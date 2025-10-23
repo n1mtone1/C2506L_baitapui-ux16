@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang chủ</title>
+  <style>
+    body { font-family: Arial; margin:20px; background:#f0f0f0; }
+    h1 { text-align:center; }
+    .products { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+    .card { background:white; padding:15px; border-radius:10px; width:220px; box-shadow:0 0 5px rgba(0,0,0,0.2);}
+    .card img { width:100%; border-radius:10px; }
+    button { margin-top:20px; padding:10px 20px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1>Danh sách sản phẩm</h1>
+  <div class="products" id="productList"></div>
+  <div style="text-align:center">
+    <button onclick="logout()">Đăng xuất</button>
+  </div>
+
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(!currentUser || currentUser.role !== "user"){
+      window.location.href = "login.html";
+    }
+
+    if(!localStorage.getItem("products")){
+      const products = [
+        {name:"Laptop", price:15000000, desc:"Máy tính xách tay mạnh mẽ", img:"https://via.placeholder.com/200"},
+        {name:"Điện thoại", price:8000000, desc:"Điện thoại thông minh", img:"https://via.placeholder.com/200"},
+        {name:"Tai nghe", price:1200000, desc:"Tai nghe không dây", img:"https://via.placeholder.com/200"}
+      ];
+      localStorage.setItem("products", JSON.stringify(products));
+    }
+
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const container = document.getElementById("productList");
+
+    products.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>Giá: ${p.price.toLocaleString()}đ</p>
+        <p>${p.desc}</p>
+      `;
+      container.appendChild(card);
+    });
+
+    function logout(){
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang chủ</title>
+  <style>
+    body { font-family: Arial; margin:20px; background:#f0f0f0; }
+    h1 { text-align:center; }
+    .products { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+    .card { background:white; padding:15px; border-radius:10px; width:220px; box-shadow:0 0 5px rgba(0,0,0,0.2);}
+    .card img { width:100%; border-radius:10px; }
+    button { margin-top:20px; padding:10px 20px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1>Danh sách sản phẩm</h1>
+  <div class="products" id="productList"></div>
+  <div style="text-align:center">
+    <button onclick="logout()">Đăng xuất</button>
+  </div>
+
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(!currentUser || currentUser.role !== "user"){
+      window.location.href = "login.html";
+    }
+
+    if(!localStorage.getItem("products")){
+      const products = [
+        {name:"Laptop", price:15000000, desc:"Máy tính xách tay mạnh mẽ", img:"https://via.placeholder.com/200"},
+        {name:"Điện thoại", price:8000000, desc:"Điện thoại thông minh", img:"https://via.placeholder.com/200"},
+        {name:"Tai nghe", price:1200000, desc:"Tai nghe không dây", img:"https://via.placeholder.com/200"}
+      ];
+      localStorage.setItem("products", JSON.stringify(products));
+    }
+
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const container = document.getElementById("productList");
+
+    products.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>Giá: ${p.price.toLocaleString()}đ</p>
+        <p>${p.desc}</p>
+      `;
+      container.appendChild(card);
+    });
+
+    function logout(){
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>s
